@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {Text,View,TextInput,TouchableOpacity,ScrollView,StatusBar,Dimensions,Image} from 'react-native'
-import Entypo from "react-native-vector-icons/dist/Entypo";
-import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import AntDesign from "react-native-vector-icons/dist/AntDesign";
+import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 
 export default class BookingsSummaryScreen extends Component {
     state = {
@@ -19,80 +19,63 @@ export default class BookingsSummaryScreen extends Component {
     return (
         
       <View style={{flex:1}}>
-           <StatusBar backgroundColor='#007bff' barStyle="light-content" />  
-        <ScrollView>
-        
-         <View style={{paddingRight:30,paddingLeft:20, backgroundColor:'white',height:50}}>
-               <View style={{ flexDirection:'row',alignItems:'center' }}>
-               <TouchableOpacity onPress={() => this.props.navigation.toggleDrawer()} >
-                  <Entypo name='menu' size={30} color='black' style={{}}/> 
-               </TouchableOpacity>
-           
-           </View>
+      <StatusBar backgroundColor='#007bff' barStyle="light-content" />  
+      <View style={{paddingRight:30,paddingLeft:20, backgroundColor:'white',height:50,justifyContent:'center'}}>
+       <View style={{ flexDirection:'row', }}>
+       <TouchableOpacity onPress={() => this.props.navigation.navigate('AvailableTrip')} >
+        <AntDesign name='arrowleft' size={30} color='black' style={{}}/> 
+       </TouchableOpacity>
+       <Text style={{color:'black',fontSize:20,fontWeight:'bold',paddingLeft:20,textAlign:'center'}}>Bookings</Text> 
+        </View>
+     </View>
+     
+
+     <View style={{backgroundColor:'#F0F0F0',height: Dimensions.get('screen').height,flex:1,paddingHorizontal:0}}>
+    
+
+      <View style={{paddingTop:20,marginHorizontal:20,}}>
+          <View style={{borderWidth:0.7,borderColor:'#b2d6e7'}}>
+       <View style={{backgroundColor:'white',borderTopLeftRadius:5,borderTopRightRadius:5,
+        flexDirection:'row',alignItems:'center',justifyContent:'space-between',paddingHorizontal:20,}}>
+       
+       <View style={{justifyContent:'center',alignContent:'center',alignItems:'center',flex:1,}}>
+      <View style={{flexDirection:'row',alignItems:'center',paddingTop:20}}>
+        <View style={{width:45,height:45,borderRadius:45,backgroundColor:'#D5E8F4',alignItems:'center',justifyContent:'center'}}>
+         <FontAwesome name='bus' size={25} color='#2492D6' style={{}}/>    
+        </View>
+        <Text style={{fontSize:22,fontWeight:'bold',paddingLeft:25}}>Bus Ride</Text>
+        </View>
+        </View>
+        </View>
+
+    <View style={{flexDirection:'row', }}>
+       <View style={{backgroundColor:'white',width:'50%',borderBottomLeftRadius:5,}}>
+        <Text style={{paddingLeft:20,color:'#4f4f4f',fontSize:15,paddingTop:20}}>Boarding</Text>
+        <Text style={{paddingTop:5}}></Text>
+        <Text style={{paddingLeft:20,color:'#4f4f4f',fontSize:15,paddingTop:10}}>Destination</Text>
+        <Text></Text>
+        <Text style={{paddingLeft:20,color:'#4f4f4f',fontSize:15,paddingTop:20}}>Departure</Text>
+        <Text style={{paddingLeft:20,color:'#4f4f4f',fontSize:15,paddingTop:10,paddingBottom:20}}>Price</Text>
        </View>
 
-
-       <View style={{backgroundColor:'#F0F0F0',height: Dimensions.get('screen').height,flex:1,paddingHorizontal:20}}>
-       <View style={{alignItems:'center'}}>
-        <Text style={{fontSize:19,paddingTop:25,fontWeight:'bold'}}>Bookings Summary</Text>
-        </View>
-          <View style={{marginTop: 20, backgroundColor: '#FAFAFA', borderRadius: 5, borderColor:'#F3F7F9',borderWidth:1}}>
-           <View style={{flexDirection:'row',justifyContent:'center',paddingTop:15,alignItems:'center'}}>
-           <View style={{width:50,height:50,borderRadius:50,backgroundColor:'#D5E8F4'}}>
-                <View style={{padding:2}}> 
-                 {/* <Image source={require('../assets/imgs/bus.jpg')} style={{width: 30, height: 30}} /> */}
-                </View>
-           </View>
-           <Text style={{fontSize:22,fontWeight:'bold',paddingLeft:15}}>Bus Ride</Text>
-           </View>
-         
-         <View style={{paddingHorizontal:30,paddingVertical:20}}>
-             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                 <Text style={{fontSize:15,color:'#5B5B5B'}}>Boarding</Text>
-                 <Text style={{fontSize:16,fontWeight:'bold',color:'#515151'}}>GIG Jibowu Station</Text>
-             </View>
-             
-             <View style={{flexDirection:'row',justifyContent:'space-around'}}> 
-               <Text></Text>
-             <Text style={{fontSize:15,color:'#59ACDF',paddingRight:39}}>Lagos</Text>
-             </View>
-          </View>
-
-
-           
-         <View style={{paddingHorizontal:30,paddingVertical:0}}>
-             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                 <Text style={{fontSize:15,color:'#5B5B5B'}}>Destination</Text>
-                 <Text style={{fontSize:16,fontWeight:'bold',color:'#515151'}}>GIG Jibowu Station</Text>
-             </View>
-             
-             <View style={{flexDirection:'row',justifyContent:'space-around'}}> 
-               <Text></Text>
-             <Text style={{fontSize:15,color:'#59ACDF',paddingRight:39}}>Kebbi</Text>
-             </View>
-          </View>
-
-   
-          <View style={{paddingHorizontal:30,paddingVertical:20}}>
-             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                 <Text style={{fontSize:15,color:'#5B5B5B'}}>Departure</Text>
-                 <Text style={{fontSize:16,fontWeight:'bold',color:'#515151',paddingRight:54}}>12/10/2019</Text>
-             </View>
-          </View>
-
-          <View style={{paddingHorizontal:30,paddingTop:10}}>
-             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                 <Text style={{fontSize:15,color:'#5B5B5B'}}>Price</Text>
-                 <Text style={{fontSize:16,fontWeight:'bold',color:'#515151',paddingRight:55}}>500000</Text>
-             </View>
-          </View>
-
-          <View style={{paddingHorizontal:30,paddingTop:10}}>
-             <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                 <Text style={{fontSize:15,color:'#5B5B5B'}}>Seat</Text>
-                 <Text style={{fontSize:16,fontWeight:'bold',color:'#515151',paddingRight:55}}>5</Text>
-             </View>
-          </View>
+       <View style={{backgroundColor:'white',width:'50%',borderBottomRightRadius:5,}}>
+        <Text style={{color:'#030303',fontWeight:'bold',paddingTop:20,fontSize:17}}>GIG Jibowu Station</Text>
+        <Text style={{color:'#4EA7DD',fontSize:15,paddingTop:3,fontWeight:'bold'}}>Lagos</Text>
+        <Text style={{color:'#030303',fontWeight:'bold',paddingTop:10,fontSize:17}}>GIG Jibowu Station</Text>
+        <Text style={{color:'#4EA7DD',fontSize:15,paddingTop:3,fontWeight:'bold'}}>Kebbi</Text>
+        <Text style={{color:'#030303',fontWeight:'bold',paddingTop:10,fontSize:17}}>12/3/2019</Text>
+        <Text style={{color:'#030303',fontWeight:'bold',paddingTop:10,fontSize:17}}>N500,000</Text>
+       </View>
+    </View>
+    </View>
+     <TouchableOpacity onPress={()=>this.setModalVisible(true)}
+       style={{backgroundColor:'#2492D6',height:60,borderRadius:6,justifyContent:'center',marginTop:30,width:'100%'}} >
+       <View style={{flexDirection:'row',justifyContent:'center',}}>        
+       <Text style={{color:'white',fontSize:25,fontWeight:'bold'}}>Book Now</Text>
+      </View>
+      </TouchableOpacity> 
+    
+     </View>
 
           <View style={{marginHorizontal:20,paddingVertical:20}}>
           <TouchableOpacity  onPress= {() => this.props.navigation.navigate('SignIn')}
@@ -110,8 +93,8 @@ export default class BookingsSummaryScreen extends Component {
 
 
        </View>  
-        </ScrollView>
-      </View>
+       
+     
       
     )
   }

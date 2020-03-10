@@ -13,7 +13,9 @@ import BookingsSuccessScreen from './component/booksuccess'
 import NextOfKinScreen from './component/nextofkin'
 import ProfileScreen from './component/profile'
 import AvailableTripScreen from './component/AvailableTrips'
+import  BookingsDetailsScreen from './component/bookingDetails'
 const LandingRoute = createStackNavigator({
+    BookingsDetails:BookingsDetailsScreen,
     AvailableTrip:AvailableTripScreen,
     SignUp:SignUpScreen,
     NextOfKin:NextOfKinScreen,
@@ -30,7 +32,7 @@ const LandingRoute = createStackNavigator({
      
    
 }, {
-    initialRouteName: 'AvailableTrip',  
+    initialRouteName: 'BookingsSummary',  
     headerMode: 'none'
 });
 
