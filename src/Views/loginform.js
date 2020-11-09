@@ -1,20 +1,29 @@
 import React, { Component } from 'react'
-import {Text,View,TextInput,TouchableOpacity,ScrollView,Alert} from 'react-native'
+import {Text,View,TextInput,TouchableOpacity,ScrollView,Alert,Button,styles} from 'react-native'
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import Feather from 'react-native-vector-icons/dist/Feather';
 import {SAVE_SESSION_ID, SAVE_FULL_NAME, SAVE_FIRST_NAME} from "../shared/storage";
 import {POST_SERVICE} from '../shared/Backend'
+// import {CustomLoader} from "../shared/customloader";
+import Modal from 'react-native-modalbox';
 export default class LoginFormView extends Component {
     state = {
-        
+          
         phoneNumber:'',
         passWord:'', 
         secureTextEntry:true,
         iconName:'eye',
         loading: false,
+        isOpen: false,
+        isDisabled: false,
+        swipeToClose: true,
     };
 
+
+    
+
     async componentDidMount(){
+    await  getMoviesFromApiAsync()
       await SAVE_SESSION_ID('')
     }
 
@@ -25,6 +34,11 @@ export default class LoginFormView extends Component {
             iconName:iconName
         });
     };
+
+    loginTwo = async () => {
+      this.refs.modal1.open();  
+    }
+
 
 
     login = async () => {
@@ -54,13 +68,15 @@ export default class LoginFormView extends Component {
             // this.setState({loading: false});
             if(response.data.jwt == null )
            {
-              Alert.alert('Alert',response.data.message); 
+           
+              // Alert.alert('Alert',response.data.message); 
            }
 
              else   
            {
             await this.saveUserDetail(response) 
-             Alert.alert('Alert',response.data.jwt); 
+             this.refs.modal1.open();  
+            //  Alert.alert('Alert',response.data.jwt); 
            
            }
        } 
@@ -79,9 +95,10 @@ export default class LoginFormView extends Component {
       }
   };
 
-        
+    
   
-  async saveUserDetail(resp){
+  
+  async saveUserDetail(resp){     
    await SAVE_SESSION_ID(resp.data.jwt);
    
     // await SAVE_FIRST_NAME(resp.data.data.firstName);
@@ -89,6 +106,16 @@ export default class LoginFormView extends Component {
      this.props.navigation.navigate('Booking');
   }
 
+    getMoviesFromApiAsync  = async () =>{
+    try {
+      let response = await fetch('https://reactnative.dev/movies.json');
+      let json = await response.json();
+      return json.movies;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
 
   render() {
     return (  
@@ -129,6 +156,13 @@ export default class LoginFormView extends Component {
                     </View>
             </TouchableOpacity>
 
+            {/* <TouchableOpacity  onPress={this.loginTwo}
+                    style={{backgroundColor:'#2492D6',height:50,borderRadius:4,justifyContent:'center',marginTop:25,width:'100%'}} >
+                    <View style={{flexDirection:'row',justifyContent:'center',}}>
+                     <Text style={{color:'white',fontSize:20,fontWeight:'bold'}}>Login22222</Text>
+                    </View>
+            </TouchableOpacity> */}
+
             <Text style={{color:'gray',paddingTop:40,fontWeight:'bold',fontSize:14}}>Don't have an account?</Text>
             <View style={{flexDirection:'row',}}>
            <TouchableOpacity  onPress={()=>this.props.navigation.navigate('LoginFormView')} style={{flexDirection:'row',}} >
@@ -136,15 +170,31 @@ export default class LoginFormView extends Component {
              <Ionicons name='ios-arrow-round-forward' size={40} color='#53A9DF' style={{alignItems:'center',paddingLeft:10}}/>
            </TouchableOpacity>
             </View>
-        </View>
+
+
 
         
+
+        </View>
+
+        {/* <Modal style={{background: 'red'}} ref={"modal1"}>
+          <Text style={{color: 'black'}}>Basic modal</Text>
+          <Text>QEQTUTTEQUETU</Text> */}
+          {/* <Button onPress={this.toggleSwipeToClose} >Disable swipeToClose({this.state.swipeToClose ? "true" : "false"})</Button> */}
+        {/* </Modal> */}
        
 
-
+        {/* <CustomLoader visible={this.state.loading}/> */}
       </View>
       
     )
   }
 }
-
+// const styles = StyleSheet.create({
+// btn: {
+//   margin: 10,
+//   backgroundColor: "#3B5998",
+//   color: "white",
+//   padding: 10
+// },}
+// )

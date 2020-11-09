@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Text,View,TextInput,TouchableOpacity,ScrollView,StatusBar,Picker, Alert} from 'react-native'
+import {Text,View,TextInput,TouchableOpacity,ScrollView,StatusBar,Picker, Alert,} from 'react-native'
 import Entypo from "react-native-vector-icons/dist/Entypo";
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import DatePicker from 'react-native-datepicker'
@@ -21,18 +21,18 @@ export default class BookingFormScreen extends Component {
     booking = async () => {
         
      
-      if(this.state.destinationLabel)  
+      // if(this.state.destinationLabel)  
         
-        Alert.alert('Please Enter Destination Location')
+      //   Alert.alert('Please Enter Destination Location')
       
 
-      else if(this.state.departureLabel)
+      // else if(this.state.departureLabel)
       
-      Alert.alert('Please Enter Departure LocationRTRTRTRTR')
+      // Alert.alert('Please Enter Departure LocationRTRTRTRTR')
     
 
 
-      else{
+      // else{
       const body = {    
        departure :this.state.departure,
        destination:this.state.destination,
@@ -57,6 +57,7 @@ export default class BookingFormScreen extends Component {
         else if (response.data.responsecode==='99')
         {
         
+
             Alert.alert('Alert', response.data.message);  
            
         }
@@ -71,7 +72,7 @@ export default class BookingFormScreen extends Component {
         // }
         // );
         return e.response;
-    }}
+    }
 };
 
 

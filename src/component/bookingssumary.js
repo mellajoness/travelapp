@@ -72,19 +72,19 @@ export default class BookingsSummaryScreen extends Component {
        style={{backgroundColor:'#2492D6',height:60,borderRadius:6,justifyContent:'center',marginTop:30,width:'100%'}} >
        <View style={{flexDirection:'row',justifyContent:'center',}}>        
        <Text style={{color:'white',fontSize:25,fontWeight:'bold'}}>Book Now</Text>
-      </View>
+      </View>  
       </TouchableOpacity> 
     
      </View>
 
-          <View style={{marginHorizontal:20,paddingVertical:20}}>
+          {/* <View style={{marginHorizontal:20,paddingVertical:20}}>
           <TouchableOpacity  onPress= {() => this.props.navigation.navigate('SignIn')}
                     style={{backgroundColor:'#2492D6',height:50,borderRadius:4,justifyContent:'center',width:'100%',}} >
                     <View style={{flexDirection:'row',justifyContent:'center',}}>
                      <Text style={{color:'white',fontSize:20,fontWeight:'bold'}}>Pay</Text>
                     </View>
             </TouchableOpacity>
-            </View>
+            </View> */}
         </View>    
 
          

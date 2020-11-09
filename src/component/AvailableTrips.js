@@ -5,6 +5,12 @@ import FontAwesome from "react-native-vector-icons/dist/FontAwesome";
 import Entypo from "react-native-vector-icons/dist/Entypo";
 import Slider from '@react-native-community/slider';
 import { ScrollView } from 'react-native-gesture-handler';
+import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+const radio_props = [  
+  {label: 'High Price to low', value: 0 },
+  {label: 'Low price to high', value: 1 },
+ 
+];
 export default class AvailableTripScreen extends Component {
   constructor(props){
     super(props);
@@ -18,6 +24,7 @@ export default class AvailableTripScreen extends Component {
         
         date:'',   
         loading: false,
+        value: 0,
     }};
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
@@ -44,7 +51,7 @@ export default class AvailableTripScreen extends Component {
 
        <View style={{backgroundColor:'#EDEDED',height:30,flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:40,marginTop:20,borderBottomColor:'#E0E0E0',borderTopColor:'#E0E0E0',borderBottomWidth:1,borderTopWidth:1}}>   
         
-        <TouchableOpacity onPress={()=>this.setModalVisible(true)}>
+        <TouchableOpacity onPress={()=>this.setModalVisibleFilter(true)}>
           <Text style={{fontSize:14,fontWeight:'',color:'#030303'}}>SORT</Text>
         </TouchableOpacity>
 
@@ -87,6 +94,33 @@ export default class AvailableTripScreen extends Component {
          </View>
       </View>
        </TouchableOpacity>
+
+
+
+    <Modal
+     visible={this.state.modalVisibleFilter}
+     onRequestClose={() => modalVisible()}
+     transparent={true}
+     animationType='fade'
+    >
+    
+    <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.7)'}}>
+    <TouchableOpacity style={{flex: 1,alignContent:'center',justifyContent:'center'}} onPress={() =>{ this.setModalVisibleFilter(!this.state.modalVisibleFilter);}}/>
+    
+    <View style={{backgroundColor: 'white', paddingVertical:30,borderRadius:10,marginHorizontal:30,paddingHorizontal:20,justifyContent:'space-evenly'}}>
+      <View style={{borderWidth:0.2, borderColor:'gray',position:'relative',top:40}}></View>
+    <RadioForm
+          radio_props={radio_props}
+          initial={0}
+          animation={true}
+          onPress={(value) => {this.setState({value:value})}}
+        />
+    </View>
+    <TouchableOpacity style={{flex: 1,alignContent:'center',justifyContent:'center'}} onPress={() =>{ this.setModalVisibleFilter(!this.state.modalVisibleFilter);}}/>
+   
+    </View>
+    </Modal>
+
 
 
    <Modal
@@ -267,25 +301,6 @@ export default class AvailableTripScreen extends Component {
      </View>
      </View>
      </Modal>  
-
-
-   
-
-   {/* <Modal
-     visible={this.state.modalVisibleFilter}
-     onRequestClose={() => modalVisible()}
-     transparent={true}
-     animationType='fade'
-    >
-    
-    <View style={{flex: 1, backgroundColor: 'rgba(0,0,0,0.4)'}}>
-    <TouchableOpacity style={{flex: 1}} onPress={() =>{ this.setModalVisibleFilter(!this.state.modalVisibleFilter);}} />
-    
-    <View style={{backgroundColor: 'white', paddingVertical:20,borderRadius:10,height:'40%',marginHorizontal:30,marginBottom:'90%'}}>
-    </View>
-    </View>
-    </Modal>
- */}
 
     </View>        
     )
